@@ -109,6 +109,9 @@ The AI agent will:
 4. Answer property questions using your description
 5. Propose viewing slots if qualified
 6. Book the viewing + send SMS/email confirmation
+7. For now the agent will transfer if:
+   7.1. The lead is qualified but now viewing slot matching
+   7.2. The lead asks for a transfer (only if he is qualified)
 
 ### 4. Get Results
 
