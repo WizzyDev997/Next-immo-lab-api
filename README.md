@@ -1,4 +1,4 @@
-# Next Immo Lab - Voice AI API
+# Next Immo Lab by Next Lab — Voice AI API
 
 Automate real estate lead qualification with AI voice calls. Our agent calls your leads, qualifies them against your criteria, and books property viewings — all via a single API call.
 
@@ -488,6 +488,34 @@ done
 
 ---
 
+## Code Samples
+
+Full runnable examples in the [`examples/`](./examples/) folder:
+
+| Language | File | What it does |
+|----------|------|-------------|
+| Python | [`examples/python/quickstart.py`](./examples/python/quickstart.py) | Trigger, poll, display results, list calls |
+| TypeScript | [`examples/typescript/quickstart.ts`](./examples/typescript/quickstart.ts) | Full typed example + webhook handler snippet |
+| Bash | [`examples/bash/quickstart.sh`](./examples/bash/quickstart.sh) | curl + jq only, zero dependencies |
+
+Run any sample:
+
+```bash
+export NEXTIMMOLAB_API_KEY="ak_live_xxxx"
+
+# Python
+pip install requests
+python examples/python/quickstart.py
+
+# TypeScript
+npx tsx examples/typescript/quickstart.ts
+
+# Bash
+./examples/bash/quickstart.sh
+```
+
+---
+
 ## Support
 
 **Email:** abdullah@next-lab.tech
@@ -496,4 +524,4 @@ done
 
 ---
 
-Built by [Next Immo Lab](https://immo.next-lab.tech)
+**Next Immo Lab** is a product by **[Next Lab](https://next-lab.tech)** | [immo.next-lab.tech](https://immo.next-lab.tech)
