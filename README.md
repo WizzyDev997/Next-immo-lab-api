@@ -100,7 +100,7 @@ curl -X POST "https://immo.next-lab.tech/api/v1/calls/trigger" \
 }
 ```
 
-### 3. Wait for the Call to Complete (~2-5 min)
+### 3. Wait for the Call to Complete (~2-3 min)
 
 The AI agent will:
 1. Call the lead on their phone
