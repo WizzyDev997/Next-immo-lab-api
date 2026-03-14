@@ -89,24 +89,31 @@ def trigger_call():
                 "Cave",
                 "Animaux acceptes",
             ],
+            "area": 78,
+            "rooms": 3.5,
+            "bathrooms": 1,
+            "terrace": 8,
         },
         "agent_config": {
             "agent_name": "Sophie",
             "agency_name": "Avendo Immobilier",
             "transfer_number": "+41791234568",
             "notification_email": "team@avendo.ch",
+            "hangup_instruction": "Merci pour votre interet. Nous vous recontacterons par email dans les 24 heures. Excellente journee!",
             "qualification_criteria": [
                 {
                     "question": "Quel est votre budget mensuel maximum pour le loyer?",
                     "type": "number",
                     "expectedValue": "2500",
                     "eliminatory": True,
+                    "rejectionMessage": "Malheureusement, le budget minimum requis pour ce bien est de 2500 CHF.",
                 },
                 {
                     "question": "Avez-vous un emploi stable ou un revenu regulier?",
                     "type": "yes_no",
                     "expectedValue": "oui",
                     "eliminatory": True,
+                    "rejectionMessage": "Un emploi stable est requis pour ce bien.",
                 },
                 {
                     "question": "Combien de personnes occuperont le logement?",

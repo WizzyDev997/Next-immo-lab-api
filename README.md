@@ -44,22 +44,29 @@ curl -X POST "https://immo.next-lab.tech/api/v1/calls/trigger" \
       "price": 3100,
       "type": "rent",
       "description": "Superbe appartement rénové de 95m2, lumineux, vue sur le lac Léman. Cuisine ouverte entièrement équipée, 2 chambres, 1 bureau, grand balcon.",
-      "features": ["Vue lac", "Cuisine ouverte", "Parking souterrain", "Cave", "Balcon"]
+      "features": ["Vue lac", "Cuisine ouverte", "Parking souterrain", "Cave", "Balcon"],
+      "area": 95,
+      "rooms": 4.5,
+      "bathrooms": 2,
+      "terrace": 12
     },
     "agent_config": {
+      "agent_name": "Sarah",
       "agency_name": "Your Agency Name",
       "qualification_criteria": [
         {
           "question": "Quel est votre budget mensuel maximum pour le loyer?",
           "type": "number",
           "expectedValue": "3100",
-          "eliminatory": true
+          "eliminatory": true,
+          "rejectionMessage": "Malheureusement, le budget minimum requis pour ce bien est de 3100 CHF."
         },
         {
           "question": "Avez-vous un emploi stable ou un revenu régulier?",
           "type": "yes_no",
           "expectedValue": "oui",
-          "eliminatory": true
+          "eliminatory": true,
+          "rejectionMessage": "Un emploi stable est requis pour ce bien."
         },
         {
           "question": "Combien de personnes occuperont le logement?",
@@ -68,7 +75,9 @@ curl -X POST "https://immo.next-lab.tech/api/v1/calls/trigger" \
           "eliminatory": false
         }
       ],
-      "transfer_number": "+41791234568"
+      "transfer_number": "+41791234568",
+      "notification_email": "notifications@votre-agence.ch",
+      "hangup_instruction": "Merci pour votre intérêt. Nous vous recontacterons par email dans les 24 heures. Excellente journée!"
     },
     "viewing_slots": [
       {
@@ -159,9 +168,17 @@ Trigger an outbound AI voice call to qualify a lead.
 | `property.type` | No | `sale` or `rent` (default: `sale`) |
 | `property.description` | Yes | Description the agent uses to answer questions |
 | `property.features` | No | Array of features/amenities |
+| `property.area` | No | Living area in m² |
+| `property.rooms` | No | Number of rooms (e.g. 4.5) |
+| `property.bathrooms` | No | Number of bathrooms |
+| `property.terrace` | No | Terrace/balcony area in m² |
+| `agent_config.agent_name` | No | AI persona name (e.g. "Sarah") |
 | `agent_config.agency_name` | No | Name the agent introduces itself with |
 | `agent_config.qualification_criteria` | No | Questions to qualify the lead |
 | `agent_config.transfer_number` | No | Phone for transfer on complex questions |
+| `agent_config.transfer_conditions` | No | Custom transfer triggers |
+| `agent_config.notification_email` | No | Email for booking notifications |
+| `agent_config.hangup_instruction` | No | Custom farewell message (max 1000 chars) |
 | `viewing_slots` | No | Available viewing time slots |
 | `callback_webhook` | No | URL to POST results when call completes |
 | `external_ref` | No | Your reference ID (must be unique per call) |
@@ -173,7 +190,10 @@ Trigger an outbound AI voice call to qualify a lead.
   "question": "What is your maximum monthly budget?",
   "type": "number",
   "expectedValue": "3100",
-  "eliminatory": true
+  "eliminatory": true,
+  "rejectionMessage": "Unfortunately, the minimum budget requirement for this property is 3100 CHF.",
+  "options": [],
+  "order": 0
 }
 ```
 
@@ -182,6 +202,9 @@ Trigger an outbound AI voice call to qualify a lead.
 | `type` | `yes_no`, `number`, `text`, `multiple_choice` | Question type |
 | `expectedValue` | string | Expected answer (for budget: minimum acceptable) |
 | `eliminatory` | boolean | If `true`, wrong answer = disqualification |
+| `rejectionMessage` | string | Custom message when criterion fails (deprecated - agent now continues all questions) |
+| `options` | string[] | Available choices for `multiple_choice` type |
+| `order` | number | Display order (0-indexed, default: array order) |
 
 **Evaluation logic:**
 - Budget: candidate value >= expected = **PASS** (3200 for expected 3100 = OK)

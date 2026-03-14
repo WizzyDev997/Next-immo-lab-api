@@ -73,24 +73,32 @@ TRIGGER_RESPONSE=$(curl -sf -X POST "${API_BASE}/calls/trigger" \
     "price": 3200,
     "type": "rent",
     "description": "Spacious 4-room apartment, 110m2, fully renovated, open kitchen, 2 bedrooms, home office, large living room with fireplace. Central location, 5 min walk to train station.",
-    "features": ["Fireplace", "Home office", "Open kitchen", "Cellar", "Parking"]
+    "features": ["Fireplace", "Home office", "Open kitchen", "Cellar", "Parking"],
+    "area": 110,
+    "rooms": 4,
+    "bathrooms": 2,
+    "terrace": 15
   },
   "agent_config": {
     "agent_name": "Clara",
     "agency_name": "Avendo Immobilier",
     "transfer_number": "+41791234568",
+    "notification_email": "notifications@avendo.ch",
+    "hangup_instruction": "Thank you for your interest. We will follow up by email within 24 hours. Have a great day!",
     "qualification_criteria": [
       {
         "question": "What is your maximum monthly budget for rent?",
         "type": "number",
         "expectedValue": "3200",
-        "eliminatory": true
+        "eliminatory": true,
+        "rejectionMessage": "Unfortunately, the minimum budget requirement for this property is 3200 CHF."
       },
       {
         "question": "Do you have a stable income or employment?",
         "type": "yes_no",
         "expectedValue": "oui",
-        "eliminatory": true
+        "eliminatory": true,
+        "rejectionMessage": "A stable employment is required for this property."
       },
       {
         "question": "How many people will live in the apartment?",

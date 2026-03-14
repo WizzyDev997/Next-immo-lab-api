@@ -115,23 +115,31 @@ async function triggerCall(): Promise<string> {
         "Büro, grosser Balkon mit Blick auf die Limmat. " +
         "Nahe Hauptbahnhof, Einkaufsmöglichkeiten. Keller und Waschküche.",
       features: ["Balkon", "Offene Küche", "Tiefgarage", "Keller", "Haustiere erlaubt"],
+      area: 95,
+      rooms: 4.5,
+      bathrooms: 2,
+      terrace: 10,
     },
     agent_config: {
       agent_name: "Anna",
       agency_name: "Avendo Immobilier",
       transfer_number: "+41791234568",
+      notification_email: "team@avendo.ch",
+      hangup_instruction: "Vielen Dank für Ihr Interesse. Wir werden uns innerhalb von 24 Stunden per E-Mail bei Ihnen melden. Einen schönen Tag!",
       qualification_criteria: [
         {
           question: "Was ist Ihr maximales monatliches Budget für die Miete?",
           type: "number",
           expectedValue: "2800",
           eliminatory: true,
+          rejectionMessage: "Leider ist das Mindestbudget für diese Immobilie 2800 CHF.",
         },
         {
           question: "Haben Sie einen festen Arbeitsvertrag oder ein regelmässiges Einkommen?",
           type: "yes_no",
           expectedValue: "oui",
           eliminatory: true,
+          rejectionMessage: "Eine feste Anstellung ist für diese Immobilie erforderlich.",
         },
         {
           question: "Wie viele Personen werden in der Wohnung wohnen?",
